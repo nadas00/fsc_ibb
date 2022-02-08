@@ -1,3 +1,6 @@
+import 'package:fsc_ibb/views/home/home_view_model.dart';
+import 'package:fsc_ibb/views/splash/splash_view.dart';
+import 'package:fsc_ibb/views/splash/splash_view_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -15,5 +18,9 @@ class LocatorInjector {
     locator.registerLazySingleton(() => DialogService());
     log.d('Registering Snackbar Service');
     locator.registerLazySingleton(() => SnackbarService());
+    log.d('Registering Splash ViewModel');
+    locator.registerLazySingleton(() => SplashViewModel());
+    log.d('Registering Home ViewModel');
+    locator.registerLazySingleton(() => HomeViewModel());
   }
 }
