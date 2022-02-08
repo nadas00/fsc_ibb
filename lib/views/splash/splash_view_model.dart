@@ -13,6 +13,6 @@ class SplashViewModel extends BaseViewModel {
   }
 
   completeSplash() => Future.delayed(const Duration(seconds: 5), () {
-        locator<NavigationService>().navigateTo(homeViewRoute);
+        locator<NavigationService>().clearStackAndShow(homeViewRoute);
       });
 }
