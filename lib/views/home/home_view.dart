@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/core/locator.dart';
 import 'package:stacked/stacked.dart';
 import 'home_view_model.dart';
 
@@ -16,7 +17,7 @@ class HomeView extends StatelessWidget {
           ),
         );
       },
-      viewModelBuilder: () => HomeViewModel(),
+      viewModelBuilder: () => locator<HomeViewModel>(),
     );
   }
 }
