@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/core/init/theme/app_theme.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.Router.generateRoute,
       initialRoute: splashViewRoute,
+      theme: defaultTheme,
     );
   }
 }
