@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.Router.generateRoute,
-      initialRoute: detailViewRoute,
+      initialRoute: homeViewRoute,
       theme: defaultTheme,
     );
   }

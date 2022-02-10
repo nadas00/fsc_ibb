@@ -49,11 +49,26 @@ class HomeView extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: const [
-                          CategoryMenuItem(),
-                          CategoryMenuItem(),
-                          CategoryMenuItem(),
-                          CategoryMenuItem(),
-                          CategoryMenuItem(),
+                          CategoryMenuItem(
+                            isSelected: true,
+                            title: 'All',
+                          ),
+                          CategoryMenuItem(
+                            isSelected: false,
+                            title: 'Web Show',
+                          ),
+                          CategoryMenuItem(
+                            isSelected: false,
+                            title: 'Bollywood',
+                          ),
+                          CategoryMenuItem(
+                            isSelected: false,
+                            title: 'Hollywood',
+                          ),
+                          CategoryMenuItem(
+                            isSelected: false,
+                            title: 'Buzz videos',
+                          ),
                         ],
                       ),
                     ),

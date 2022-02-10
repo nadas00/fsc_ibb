@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:fsc_ibb/views/home/home_view.dart';
+import 'package:fsc_ibb/widgets/common/style/common_gradient.dart';
 
 class ShowCard extends StatelessWidget {
   const ShowCard({
@@ -143,14 +144,4 @@ class ShowCard extends StatelessWidget {
       ),
     );
   }
-
-  LinearGradient get commonGradient => const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Colors.white,
-          Colors.deepOrangeAccent,
-        ],
-        stops: [.1, .5],
-      );
 }
