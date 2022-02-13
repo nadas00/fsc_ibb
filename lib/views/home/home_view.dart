@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fsc_ibb/core/locator.dart';
+import 'package:fsc_ibb/model/show/show_model.dart';
 import 'package:fsc_ibb/widgets/category_menu_item/category_menu_item.dart';
 import 'package:fsc_ibb/widgets/common/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:fsc_ibb/widgets/common/stream_section_header/stream_section_header_widget.dart';
+import 'package:fsc_ibb/widgets/common/style/common_gradient.dart';
 import 'package:fsc_ibb/widgets/show_cards/carousel_show_card_widget.dart';
 import 'package:fsc_ibb/widgets/show_cards/show_card_widget.dart';
+import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 import 'package:stacked/stacked.dart';
 import 'home_view_model.dart';
 
@@ -13,11 +17,21 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
+      onModelReady: (model) {
+        model.getPopularStreams();
+        model.getYouMayLikeStreams();
+      },
       builder: (BuildContext context, HomeViewModel viewModel, Widget _) {
         return Scaffold(
           appBar: AppBar(
             leading: const Icon(Icons.menu),
-            actions: const [Icon(Icons.notifications), Icon(Icons.more_horiz)],
+            actions: const [
+              Icon(Icons.notifications),
+              SizedBox(
+                width: 25,
+              ),
+              Icon(Icons.more_horiz)
+            ],
           ),
           body: Stack(
             children: [
@@ -26,18 +40,30 @@ class HomeView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Flexible(
+                        Flexible(
                           child: TextField(
-                            decoration: InputDecoration(filled: true, fillColor: Colors.blue),
+                            decoration: InputDecoration(
+                              hintText: 'Search movie, series...',
+                              fillColor: Colors.white12,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(
-                          width: 25,
+                          width: 20,
                         ),
                         Container(
                           width: 50,
                           height: 50,
-                          color: Colors.orange,
+                          child: const Icon(Icons.search),
+                          decoration: ShapeDecoration(
+                            gradient: commonGradient,
+                            shape: const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+                          ),
                         ),
                       ],
                     ),
@@ -72,41 +98,63 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 25),
-                    const CarouselShowCard(),
+                    viewModel.busy(viewModel.popularStreams)
+                        ? const CircularProgressIndicator.adaptive()
+                        : CarouselShowCard(
+                            title: viewModel.popularStreams.first.title,
+                            score: viewModel.popularStreams.first.score,
+                            coverUrl: viewModel.popularStreams.first.coverUrl,
+                          ),
                     const SizedBox(height: 25),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Popular",
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                    ),
+                    const StreamSectionHeader(title: "Popular"),
                     const SizedBox(height: 25),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(children: const [
-                        ShowCard(),
-                        SizedBox(width: 25),
-                        ShowCard(),
-                      ]),
-                    ),
+                    viewModel.busy(viewModel.popularStreams)
+                        ? const CircularProgressIndicator.adaptive()
+                        : SizedBox(
+                            height: 200,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                ShowModel currentShowModel = viewModel.popularStreams[index];
+                                return ShowCard(
+                                  title: currentShowModel.title,
+                                  language: currentShowModel.language,
+                                  view: currentShowModel.view,
+                                  score: currentShowModel.score,
+                                  coverUrl: currentShowModel.coverUrl,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(width: 25);
+                              },
+                              itemCount: viewModel?.popularStreams?.length ?? 0,
+                            ),
+                          ),
                     const SizedBox(height: 25),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "You may like",
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                    ),
+                    const StreamSectionHeader(title: "You may like"),
                     const SizedBox(height: 25),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(children: const [
-                        ShowCard(),
-                        SizedBox(width: 25),
-                        ShowCard(),
-                      ]),
-                    ),
+                    viewModel.busy(viewModel.youMayLikeStreams)
+                        ? const CircularProgressIndicator.adaptive()
+                        : SizedBox(
+                            height: 200,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                ShowModel currentShowModel = viewModel.youMayLikeStreams[index];
+                                return ShowCard(
+                                  title: currentShowModel.title,
+                                  language: currentShowModel.language,
+                                  view: currentShowModel.view,
+                                  score: currentShowModel.score,
+                                  coverUrl: currentShowModel.coverUrl,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(width: 25);
+                              },
+                              itemCount: viewModel?.youMayLikeStreams?.length ?? 0,
+                            ),
+                          ),
                     SizedBox(height: MediaQuery.of(context).viewPadding.bottom + 125),
                   ],
                 ),

@@ -23,13 +23,13 @@ class BlurredBottomNavigationBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(25),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(
-                    sigmaX: 15.0,
-                    sigmaY: 15.0,
+                    sigmaX: 5.0,
+                    sigmaY: 5.0,
                   ),
                   child: Container(
                     width: MediaQuery.of(context).size.width - 25,
                     padding: const EdgeInsets.all(16.0),
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey.withOpacity(0.2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: const [
