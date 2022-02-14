@@ -150,11 +150,7 @@ class DetailView extends StatelessWidget {
                               return Padding(
                                 padding: const EdgeInsets.only(right: 16.0),
                                 child: ShowCard(
-                                  coverUrl: recomendedModel[index].coverUrl,
-                                  language: recomendedModel[index].language,
-                                  score: recomendedModel[index].score,
-                                  title: recomendedModel[index].title,
-                                  view: recomendedModel[index].view,
+                                  showModel: recomendedModel[index],
                                 ),
                               );
                             },

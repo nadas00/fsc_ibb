@@ -101,9 +101,7 @@ class HomeView extends StatelessWidget {
                     viewModel.busy(viewModel.popularStreams)
                         ? const CircularProgressIndicator.adaptive()
                         : CarouselShowCard(
-                            title: viewModel.popularStreams.first.title,
-                            score: viewModel.popularStreams.first.score,
-                            coverUrl: viewModel.popularStreams.first.coverUrl,
+                            showModel: viewModel.popularStreams.first,
                           ),
                     const SizedBox(height: 25),
                     const StreamSectionHeader(title: "Popular"),
@@ -117,11 +115,7 @@ class HomeView extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 ShowModel currentShowModel = viewModel.popularStreams[index];
                                 return ShowCard(
-                                  title: currentShowModel.title,
-                                  language: currentShowModel.language,
-                                  view: currentShowModel.view,
-                                  score: currentShowModel.score,
-                                  coverUrl: currentShowModel.coverUrl,
+                                  showModel: currentShowModel,
                                 );
                               },
                               separatorBuilder: (context, index) {
@@ -142,11 +136,7 @@ class HomeView extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 ShowModel currentShowModel = viewModel.youMayLikeStreams[index];
                                 return ShowCard(
-                                  title: currentShowModel.title,
-                                  language: currentShowModel.language,
-                                  view: currentShowModel.view,
-                                  score: currentShowModel.score,
-                                  coverUrl: currentShowModel.coverUrl,
+                                  showModel: currentShowModel,
                                 );
                               },
                               separatorBuilder: (context, index) {

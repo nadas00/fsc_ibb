@@ -1,30 +1,23 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/model/show/show_model.dart';
 import 'package:fsc_ibb/widgets/common/play_button_widget/play_button_widget.dart';
 import 'package:fsc_ibb/widgets/common/score_widget/score_widget.dart';
 
 class ShowCard extends StatelessWidget {
-  final String title;
-  final String language;
-  final String view;
-  final double score;
-  final String coverUrl;
+  final ShowModel showModel;
 
   const ShowCard({
     Key key,
-    @required this.title,
-    @required this.language,
-    @required this.view,
-    @required this.score,
-    @required this.coverUrl,
+    @required this.showModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(image: NetworkImage(coverUrl), fit: BoxFit.cover),
+        image: DecorationImage(image: NetworkImage(showModel.coverUrl), fit: BoxFit.cover),
         color: Colors.white.withOpacity(.1),
         borderRadius: BorderRadius.circular(45),
       ),
@@ -60,7 +53,7 @@ class ShowCard extends StatelessWidget {
                               children: [
                                 Flexible(
                                   child: Text(
-                                    title,
+                                    showModel.title,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: Theme.of(context).textTheme.subtitle1,
@@ -69,7 +62,7 @@ class ShowCard extends StatelessWidget {
                                 const SizedBox(width: 5),
                                 Flexible(
                                   child: Text(
-                                    " ($language)",
+                                    " (${showModel.language})",
                                     style: Theme.of(context).textTheme.subtitle1,
                                   ),
                                 ),
@@ -82,7 +75,7 @@ class ShowCard extends StatelessWidget {
                         child: Row(
                           children: [
                             Flexible(
-                              child: ScoreWidget(score: score),
+                              child: ScoreWidget(score: showModel.score),
                             ),
                             const SizedBox(width: 5),
                             Flexible(
@@ -92,7 +85,7 @@ class ShowCard extends StatelessWidget {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: view,
+                                        text: showModel.view,
                                         style: Theme.of(context).textTheme.subtitle1,
                                       ),
                                       TextSpan(
