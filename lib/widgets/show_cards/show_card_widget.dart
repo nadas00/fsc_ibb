@@ -25,7 +25,7 @@ class ShowCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(image: NetworkImage(coverUrl), fit: BoxFit.cover),
-        color: Colors.yellow,
+        color: Colors.white.withOpacity(.1),
         borderRadius: BorderRadius.circular(45),
       ),
       height: 200,

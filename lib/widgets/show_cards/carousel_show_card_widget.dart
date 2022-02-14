@@ -16,11 +16,11 @@ class CarouselShowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 15, right: 25, left: 25),
+      padding: const EdgeInsets.only(bottom: 15, right: 25, left: 25),
       alignment: Alignment.bottomCenter,
       decoration: BoxDecoration(
         image: DecorationImage(image: NetworkImage(coverUrl), fit: BoxFit.cover),
-        color: Colors.yellow,
+        color: Colors.white.withOpacity(.1),
         borderRadius: BorderRadius.circular(45),
       ),
       child: Row(
