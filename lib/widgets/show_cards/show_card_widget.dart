@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:fsc_ibb/widgets/common/play_button_widget/play_button_widget.dart';
 import 'package:fsc_ibb/widgets/common/score_widget/score_widget.dart';
-import 'package:fsc_ibb/widgets/common/style/common_gradient.dart';
 
 class ShowCard extends StatelessWidget {
   final String title;
@@ -14,11 +13,11 @@ class ShowCard extends StatelessWidget {
 
   const ShowCard({
     Key key,
-    this.title,
-    this.language,
-    this.view,
-    this.score,
-    this.coverUrl,
+    @required this.title,
+    @required this.language,
+    @required this.view,
+    @required this.score,
+    @required this.coverUrl,
   }) : super(key: key);
 
   @override

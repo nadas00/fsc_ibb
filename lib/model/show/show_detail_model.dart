@@ -6,12 +6,10 @@ class ShowDetailModel {
   String category;
   String duration;
   List<CastModel> starCast;
-  List<ShowModel> recomended;
   ShowDetailModel({
     this.storyLine,
     this.category,
     this.duration,
     this.starCast,
-    this.recomended,
   });
 }

@@ -1,16 +1,17 @@
+import 'package:equatable/equatable.dart';
 import 'package:fsc_ibb/model/show/cast_model.dart';
 import 'package:fsc_ibb/model/show/show_detail_model.dart';
 
 class ShowModel {
-  int id;
-  String title;
-  String view;
-  double score;
-  String language;
-  ShowDetailModel detailModel;
-  String coverUrl;
+  final int id;
+  final String title;
+  final String view;
+  final double score;
+  final String language;
+  final ShowDetailModel detailModel;
+  final String coverUrl;
 
-  ShowModel({
+  const ShowModel({
     this.id,
     this.title,
     this.view,
@@ -19,6 +20,10 @@ class ShowModel {
     this.detailModel,
     this.coverUrl,
   });
+
+  List<ShowModel> getRecomended(int id) {
+    return [ShowModel.sample1(), ShowModel.sample2(), ShowModel.sample3(), ShowModel.sample4()]..removeWhere((element) => element.id == id);
+  }
 
   factory ShowModel.sample1() {
     return ShowModel(
@@ -50,7 +55,6 @@ class ShowModel {
             jobTitle: "Stefan",
           ),
         ],
-        recomended: [],
       ),
     );
   }
@@ -83,7 +87,6 @@ class ShowModel {
             jobTitle: "Dr. Grace Augustine",
           ),
         ],
-        recomended: [],
       ),
     );
   }
@@ -117,7 +120,6 @@ class ShowModel {
             jobTitle: "Elizabeth Swann",
           ),
         ],
-        recomended: [],
       ),
     );
   }
@@ -150,7 +152,6 @@ class ShowModel {
             jobTitle: "Princess Leia Organa",
           ),
         ],
-        recomended: [],
       ),
     );
   }

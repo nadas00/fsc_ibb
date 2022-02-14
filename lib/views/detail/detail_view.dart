@@ -1,11 +1,19 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/model/show/cast_model.dart';
+import 'package:fsc_ibb/model/show/show_model.dart';
+import 'package:fsc_ibb/widgets/common/play_button_widget/play_button_widget.dart';
 import 'package:fsc_ibb/widgets/show_cards/show_card_widget.dart';
+import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 import 'package:stacked/stacked.dart';
 import 'detail_view_model.dart';
 
 class DetailView extends StatelessWidget {
+  final ShowModel model = ShowModel.sample1();
+
+  DetailView({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DetailViewModel>.reactive(
@@ -21,7 +29,7 @@ class DetailView extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     children: [
                       Image.network(
-                        "https://static.remove.bg/remove-bg-web/d450d501f6500a09e72d0e306a5d62768359d9fa/assets/start_remove-c851bdf8d3127a24e2d137a55b1b427378cd17385b01aec6e59d5d4b5f39d2ec.png",
+                        model.coverUrl,
                         fit: BoxFit.cover,
                       ),
                       Container(
@@ -55,15 +63,14 @@ class DetailView extends StatelessWidget {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Container(
-                                              height: 35,
-                                              width: 35,
-                                              decoration: const ShapeDecoration(shape: CircleBorder(), color: Colors.red),
-                                            ),
+                                            const PlayButtonWidget.rounded(),
                                             const SizedBox(width: 8),
-                                            Text(
-                                              "Watch Trailer",
-                                              style: Theme.of(context).textTheme.bodyText1,
+                                            GradientMasker(
+                                              active: true,
+                                              child: Text(
+                                                "Watch Trailer",
+                                                style: Theme.of(context).textTheme.bodyText1,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -76,30 +83,16 @@ class DetailView extends StatelessWidget {
                           ),
                           const SizedBox(height: 25),
                           Text(
-                            "Maleficent",
+                            model.title,
                             style: Theme.of(context).textTheme.headline5,
                           ),
                           const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text("Eng"),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text("|"),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text("Action"),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text("|"),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              Text("3h10m"),
+                            children: [
+                              Text(model.language),
+                              Text(" | "),
+                              Text(model.detailModel.category.split(", ").join(" | ")),
                             ],
                           ),
                           const SizedBox(height: 25),
@@ -122,48 +115,51 @@ class DetailView extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       const SizedBox(height: 25),
-                      Text("story description " * 20),
+                      Text(model.detailModel.storyLine),
                       const SizedBox(height: 25),
                       Text(
                         "Star Cast",
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       const SizedBox(height: 25),
-                      Row(
-                        children: [
-                          Container(
-                            height: 60,
-                            width: 60,
-                            decoration: const ShapeDecoration(shape: CircleBorder(), color: Colors.red),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: List.generate(
+                            model.detailModel.starCast.length,
+                            (index) => Padding(
+                              padding: const EdgeInsets.only(right: 16.0),
+                              child: CastWidget(castModel: model.detailModel.starCast[index]),
+                            ),
                           ),
-                          const SizedBox(width: 8),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Actor",
-                                style: Theme.of(context).textTheme.caption,
-                              ),
-                              const SizedBox(height: 10),
-                              const Text("Angelina Jolie"),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
                       Text(
-                        "Popular",
+                        "Recommended",
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       const SizedBox(height: 25),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Row(children: const [
-                          ShowCard(),
-                          SizedBox(width: 25),
-                          ShowCard(),
-                        ]),
+                        child: Row(
+                          children: List.generate(
+                            3,
+                            (index) {
+                              final recomendedModel = model.getRecomended(model.id);
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 16.0),
+                                child: ShowCard(
+                                  coverUrl: recomendedModel[index].coverUrl,
+                                  language: recomendedModel[index].language,
+                                  score: recomendedModel[index].score,
+                                  title: recomendedModel[index].title,
+                                  view: recomendedModel[index].view,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -174,6 +170,47 @@ class DetailView extends StatelessWidget {
         );
       },
       viewModelBuilder: () => DetailViewModel(),
+    );
+  }
+}
+
+class CastWidget extends StatelessWidget {
+  final CastModel castModel;
+  const CastWidget({
+    Key key,
+    @required this.castModel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          height: 60,
+          width: 60,
+          decoration: ShapeDecoration(
+            shape: const CircleBorder(),
+            color: Colors.red,
+            image: DecorationImage(
+              image: NetworkImage(castModel.url),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              castModel.jobTitle,
+              style: Theme.of(context).textTheme.caption,
+            ),
+            const SizedBox(height: 10),
+            Text(castModel.name),
+          ],
+        ),
+      ],
     );
   }
 }
