@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -10,12 +11,16 @@ import 'package:stacked/stacked.dart';
 import 'detail_view_model.dart';
 
 class DetailView extends StatelessWidget {
-  final ShowModel model = ShowModel.sample1();
-
-  DetailView({Key key}) : super(key: key);
+  const DetailView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var model = ModalRoute.of(context).settings.arguments as ShowModel;
+    if (model == null) {
+      log("null");
+      model = ShowModel.sample1();
+    }
+
     return ViewModelBuilder<DetailViewModel>.reactive(
       builder: (BuildContext context, DetailViewModel viewModel, Widget _) {
         return Scaffold(

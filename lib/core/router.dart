@@ -11,19 +11,18 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashViewRoute:
-        return MaterialPageRoute(builder: (_) => view0.SplashView());
+        return MaterialPageRoute(builder: (_) => view0.SplashView(), settings: settings);
       case homeViewRoute:
-        return MaterialPageRoute(builder: (_) => view1.HomeView());
+        return MaterialPageRoute(builder: (_) => view1.HomeView(), settings: settings);
       case detailViewRoute:
-        return MaterialPageRoute(builder: (_) => view2.DetailView());
+        return MaterialPageRoute(builder: (_) => view2.DetailView(), settings: settings);
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text('No route defined for ${settings.name}'),
-            ),
-          ),
-        );
+            builder: (_) => Scaffold(
+                  body: Center(
+                    child: Text('No route defined for ${settings.name}'),
+                  ),
+                ));
     }
   }
 }
