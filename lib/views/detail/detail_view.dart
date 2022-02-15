@@ -15,13 +15,18 @@ class DetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var model = ModalRoute.of(context).settings.arguments as ShowModel;
-    if (model == null) {
+    var currentShowModel = ModalRoute.of(context).settings.arguments as ShowModel;
+    if (currentShowModel == null) {
       log("null");
-      model = ShowModel.sample1();
+      currentShowModel = ShowModel.sample1();
     }
 
     return ViewModelBuilder<DetailViewModel>.reactive(
+      onModelReady: (model) {
+        model.setShowModel(currentShowModel);
+        model.getCastModels();
+        model.getStoryLine();
+      },
       builder: (BuildContext context, DetailViewModel viewModel, Widget _) {
         return Scaffold(
           body: CustomScrollView(
@@ -34,7 +39,7 @@ class DetailView extends StatelessWidget {
                     alignment: Alignment.bottomCenter,
                     children: [
                       Image.network(
-                        model.coverUrl,
+                        currentShowModel.coverUrl,
                         fit: BoxFit.cover,
                       ),
                       Container(
@@ -88,16 +93,16 @@ class DetailView extends StatelessWidget {
                           ),
                           const SizedBox(height: 25),
                           Text(
-                            model.title,
+                            currentShowModel.title,
                             style: Theme.of(context).textTheme.headline5,
                           ),
                           const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(model.language),
+                              Text(currentShowModel.language),
                               Text(" | "),
-                              Text(model.detailModel.category.split(", ").join(" | ")),
+                              Text(currentShowModel.detailModel.category.split(", ").join(" | ")),
                             ],
                           ),
                           const SizedBox(height: 25),
@@ -120,25 +125,27 @@ class DetailView extends StatelessWidget {
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       const SizedBox(height: 25),
-                      Text(model.detailModel.storyLine),
+                      viewModel.busy(viewModel.storyLine) ? const CircularProgressIndicator.adaptive() : Text(viewModel.storyLine),
                       const SizedBox(height: 25),
                       Text(
                         "Star Cast",
                         style: Theme.of(context).textTheme.headline5,
                       ),
                       const SizedBox(height: 25),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                            model.detailModel.starCast.length,
-                            (index) => Padding(
-                              padding: const EdgeInsets.only(right: 16.0),
-                              child: CastWidget(castModel: model.detailModel.starCast[index]),
+                      viewModel.busy(viewModel.castModels)
+                          ? const CircularProgressIndicator.adaptive()
+                          : SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: List.generate(
+                                  viewModel.castModels.length,
+                                  (index) => Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: CastWidget(castModel: viewModel.castModels[index]),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
                       const SizedBox(height: 25),
                       Text(
                         "Recommended",
@@ -151,7 +158,7 @@ class DetailView extends StatelessWidget {
                           children: List.generate(
                             3,
                             (index) {
-                              final recomendedModel = model.getRecomended(model.id);
+                              final recomendedModel = currentShowModel.getRecomended(currentShowModel.id);
                               return Padding(
                                 padding: const EdgeInsets.only(right: 16.0),
                                 child: ShowCard(
