@@ -8,6 +8,7 @@ import 'core/router_constants.dart';
 import 'core/router.dart' as router;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await LocatorInjector.setUpLocator();
   runApp(const MyApp());
 }
@@ -22,8 +23,24 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.Router.generateRoute,
-      initialRoute: homeViewRoute,
+      initialRoute: splashViewRoute,
       theme: defaultTheme,
     );
+  }
+}
+
+class CachedImageStorage {
+  static final CachedImageStorage _instace = CachedImageStorage._init();
+  static CachedImageStorage get instance => _instace;
+  CachedImageStorage._init();
+
+  BuildContext _context;
+  NetworkImage loginBackgroundImage = const NetworkImage(
+    'https://media.giphy.com/media/xT9IgN8YKRhByRBzMI/giphy-downsized-large.gif',
+  );
+
+  init(BuildContext context) async {
+    _context = context;
+    await precacheImage(loginBackgroundImage, _context);
   }
 }

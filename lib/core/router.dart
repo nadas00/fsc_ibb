@@ -6,23 +6,27 @@ import 'package:fsc_ibb/core/router_constants.dart';
 import 'package:fsc_ibb/views/splash/splash_view.dart' as view0;
 import 'package:fsc_ibb/views/home/home_view.dart' as view1;
 import 'package:fsc_ibb/views/detail/detail_view.dart' as view2;
+import 'package:fsc_ibb/views/login/login_view.dart' as view3;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splashViewRoute:
-        return MaterialPageRoute(builder: (_) => view0.SplashView(), settings: settings);
+        return MaterialPageRoute(builder: (_) => view0.SplashView());
       case homeViewRoute:
-        return MaterialPageRoute(builder: (_) => view1.HomeView(), settings: settings);
+        return MaterialPageRoute(builder: (_) => view1.HomeView());
       case detailViewRoute:
-        return MaterialPageRoute(builder: (_) => view2.DetailView(), settings: settings);
+        return MaterialPageRoute(builder: (_) => view2.DetailView());
+      case loginViewRoute:
+        return MaterialPageRoute(builder: (_) => view3.LoginView());
       default:
         return MaterialPageRoute(
-            builder: (_) => Scaffold(
-                  body: Center(
-                    child: Text('No route defined for ${settings.name}'),
-                  ),
-                ));
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          ),
+        );
     }
   }
 }
