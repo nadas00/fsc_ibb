@@ -23,16 +23,19 @@ class DetailViewModel extends BaseViewModel {
 
   getCastModels() async {
     setBusyForObject(castModels, true);
+    log.w("Fetching Cast for ${_showModel.title}");
     castModels = await _detailService.getCasts(_showModel);
-    log.d(castModels.length);
+    for (var element in castModels) {
+      log.i("Cast : ${element.name}");
+    }
     setBusyForObject(castModels, false);
   }
 
   getStoryLine() async {
     setBusyForObject(storyLine, true);
+    log.w("Fetching Story Line for ${_showModel.title}");
     storyLine = await _detailService.getStoryLine(_showModel);
-    log.d(storyLine);
-
+    log.i("Story Line : $storyLine");
     setBusyForObject(storyLine, false);
   }
 }

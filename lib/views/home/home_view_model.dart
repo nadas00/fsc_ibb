@@ -18,13 +18,21 @@ class HomeViewModel extends BaseViewModel {
 
   getPopularStreams() async {
     setBusyForObject(popularStreams, true);
+    log.w("Fetching Popular Streams");
     popularStreams = await _homeService.getPopularStreams();
+    for (var element in popularStreams) {
+      log.i("Popular Stream : ${element.title}");
+    }
     setBusyForObject(popularStreams, false);
   }
 
   getYouMayLikeStreams() async {
     setBusyForObject(youMayLikeStreams, true);
+    log.w("Fetching You May Like Streams");
     youMayLikeStreams = await _homeService.getYouMayLikeStreams();
+    for (var element in youMayLikeStreams) {
+      log.i("You May Like Stream : ${element.title}");
+    }
     setBusyForObject(youMayLikeStreams, false);
   }
 }
