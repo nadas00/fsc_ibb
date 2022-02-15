@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fsc_ibb/core/locator.dart';
 import 'package:fsc_ibb/core/router_constants.dart';
+import 'package:fsc_ibb/services/cache_image_service/cahce_image_service.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:fsc_ibb/core/logger.dart';
@@ -21,7 +22,7 @@ class SplashViewModel extends BaseViewModel {
   }
 
   completeSplash() async {
-    await CachedImageStorage.instance.init(_context);
+    await CacheImageService.instance.init(_context);
     locator<NavigationService>().clearStackAndShow(loginViewRoute);
   }
 }

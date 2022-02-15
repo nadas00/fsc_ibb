@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fsc_ibb/core/locator.dart';
 import 'package:fsc_ibb/core/router_constants.dart';
 import 'package:fsc_ibb/main.dart';
+import 'package:fsc_ibb/services/cache_image_service/cahce_image_service.dart';
 import 'package:fsc_ibb/widgets/common/style/common_gradient.dart';
 import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 import 'package:stacked/stacked.dart';
@@ -20,7 +21,7 @@ class LoginView extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               Image(
-                image: CachedImageStorage.instance.loginBackgroundImage,
+                image: CacheImageService.instance.loginBackgroundImage,
                 fit: BoxFit.fill,
               ),
               DecoratedBox(

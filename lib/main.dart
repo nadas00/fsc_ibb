@@ -28,19 +28,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class CachedImageStorage {
-  static final CachedImageStorage _instace = CachedImageStorage._init();
-  static CachedImageStorage get instance => _instace;
-  CachedImageStorage._init();
-
-  BuildContext _context;
-  NetworkImage loginBackgroundImage = const NetworkImage(
-    'https://media.giphy.com/media/xT9IgN8YKRhByRBzMI/giphy-downsized-large.gif',
-  );
-
-  init(BuildContext context) async {
-    _context = context;
-    await precacheImage(loginBackgroundImage, _context);
-  }
-}
