@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:fsc_ibb/widgets/common/style/common_gradient.dart';
 import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 
+part 'variants/rounded_blurred_play_button.dart';
+part 'variants/rounded_play_button.dart';
+part 'variants/square_play_button.dart';
+
 enum PlayButtonType { rounded, square, roundedBlurred }
 
 class PlayButtonWidget extends StatelessWidget {
@@ -26,67 +30,13 @@ class PlayButtonWidget extends StatelessWidget {
     Widget widget;
     switch (_playButtonType) {
       case PlayButtonType.rounded:
-        widget = Container(
-          decoration: const ShapeDecoration(
-            color: Colors.white,
-            shape: CircleBorder(),
-          ),
-          child: const GradientMasker(
-              active: true,
-              child: Icon(
-                Icons.play_arrow_rounded,
-                size: 30,
-              )),
-          width: 35,
-          height: 35,
-        );
+        widget = const _RoundedPlayButton();
         break;
       case PlayButtonType.square:
-        widget = Container(
-          decoration: const ShapeDecoration(
-            color: Colors.white,
-            shape: ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-          ),
-          alignment: Alignment.center,
-          height: 35,
-          width: 35,
-          child: Container(
-            decoration: ShapeDecoration(
-              gradient: commonGradient,
-              shape: const CircleBorder(),
-            ),
-            child: const Icon(Icons.play_arrow_rounded),
-            width: 25,
-            height: 25,
-          ),
-        );
+        widget = const _SquarePlayButton();
         break;
       case PlayButtonType.roundedBlurred:
-        widget = ClipOval(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 5.0,
-              sigmaY: 5.0,
-            ),
-            child: Container(
-              padding: const EdgeInsets.all(8.0),
-              color: Colors.grey.withOpacity(0.5),
-              child: Container(
-                decoration: const ShapeDecoration(
-                  color: Colors.white,
-                  shape: CircleBorder(),
-                ),
-                child: const GradientMasker(
-                  active: true,
-                  child: Icon(
-                    Icons.play_arrow_rounded,
-                    size: 30,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
+        widget = const _RoundedBlurredPlayButton();
         break;
     }
     return widget;
