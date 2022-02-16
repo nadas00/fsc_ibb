@@ -15,7 +15,9 @@ class CategoryMenuItem extends StatelessWidget {
     return Container(
       decoration: ShapeDecoration(
         gradient: isSelected ? commonGradient : null,
-        shape: const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+        shape: const ContinuousRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+        ),
       ),
       margin: const EdgeInsets.only(right: 5),
       padding: const EdgeInsets.symmetric(horizontal: 16.0),

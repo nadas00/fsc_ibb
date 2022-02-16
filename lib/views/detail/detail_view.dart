@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/core/utils/extension/context/translation_context_extension.dart';
 import 'package:fsc_ibb/model/show/cast_model.dart';
 import 'package:fsc_ibb/model/show/show_model.dart';
 import 'package:fsc_ibb/widgets/common/play_button_widget/play_button_widget.dart';
@@ -63,15 +64,15 @@ class DetailView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 25),
-                      const TopicText("Sotry Line"),
+                      TopicText(context.translation.story_line),
                       const SizedBox(height: 25),
                       viewModel.busy(viewModel.storyLine) ? const CircularProgressIndicator.adaptive() : Text(viewModel.storyLine),
                       const SizedBox(height: 25),
-                      const TopicText("Star Cast"),
+                      TopicText(context.translation.star_cast),
                       const SizedBox(height: 25),
                       viewModel.busy(viewModel.castModels) ? const CircularProgressIndicator.adaptive() : _CastList(castModelList: viewModel.castModels),
                       const SizedBox(height: 25),
-                      const TopicText("Recomended"),
+                      TopicText(context.translation.recomended),
                       const SizedBox(height: 25),
                       _RecomendedList(currentShowModel: currentShowModel),
                       const SizedBox(height: 50),

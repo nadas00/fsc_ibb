@@ -10,26 +10,26 @@ class _Categories extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: const [
+        children: [
           CategoryMenuItem(
             isSelected: true,
-            title: 'All',
+            title: context.translation.all,
           ),
           CategoryMenuItem(
             isSelected: false,
-            title: 'Web Show',
+            title: context.translation.web_show,
           ),
           CategoryMenuItem(
             isSelected: false,
-            title: 'Bollywood',
+            title: context.translation.hollywood,
           ),
           CategoryMenuItem(
             isSelected: false,
-            title: 'Hollywood',
+            title: context.translation.bollywood,
           ),
           CategoryMenuItem(
             isSelected: false,
-            title: 'Buzz videos',
+            title: context.translation.buzz_videos,
           ),
         ],
       ),

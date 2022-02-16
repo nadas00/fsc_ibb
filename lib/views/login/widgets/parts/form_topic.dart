@@ -7,6 +7,12 @@ class _FormTopic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Movie App", style: Theme.of(context).textTheme.headline4.copyWith(fontWeight: FontWeight.bold, color: Colors.white));
+    return Text(
+      "Movie App",
+      style: Theme.of(context).textTheme.headline4.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+    );
   }
 }

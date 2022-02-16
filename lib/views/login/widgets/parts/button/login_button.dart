@@ -16,7 +16,7 @@ class _LoginButton extends StatelessWidget {
         child: GradientMasker(
           active: true,
           child: Text(
-            "Login",
+            context.translation.login,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),

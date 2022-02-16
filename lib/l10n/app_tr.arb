@@ -1,4 +1,25 @@
 {
-    "title": "Son Mohikan",
-    "welcome_msg":"Son Mohikan'a Hoş Geldiniz !"
+  "watch_trailer": "Fragman",
+  "story_line": "Hikaye",
+  "star_cast": "Yıldızlar",
+  "recomended": "Önerilenler",
+  "all": "Hepsi",
+  "web_show": "Web Show",
+  "bollywood": "Bollywood",
+  "hollywood": "Hollywood",
+  "buzz_videos": "Buzz Videos",
+  "search_for_movie_series_dots": "Ara: Film, Dizi...",
+  "popular": "Popüler",
+  "you_may_like": "Önerilenler",
+  "username": "Kullanıcı adı",
+  "password": "Şifre",
+  "movie_app": "Film Uygulaması",
+  "best_shows_for_you": "Senin için en iyisi",
+  "or": "YA DA",
+  "home": "Ana Sayfa",
+  "live_tv": "Canlı TV",
+  "games": "Oyunlar",
+  "settings": "Ayarlar",
+  "login": "Giriş Yap",
+  "register": "Kaydol"
 }

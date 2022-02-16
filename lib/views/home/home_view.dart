@@ -9,6 +9,7 @@ import 'package:fsc_ibb/widgets/show_cards/carousel_show_card_widget.dart';
 import 'package:fsc_ibb/widgets/show_cards/show_card_widget.dart';
 import 'package:stacked/stacked.dart';
 import 'home_view_model.dart';
+import 'package:fsc_ibb/core/utils/extension/context/translation_context_extension.dart';
 
 // Header Parts
 part 'widget/parts/header/categories.dart';

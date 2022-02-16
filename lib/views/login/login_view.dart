@@ -9,6 +9,7 @@ import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'login_view_model.dart';
+import 'package:fsc_ibb/core/utils/extension/context/translation_context_extension.dart';
 
 part 'widgets/parts/button/login_button.dart';
 part 'widgets/parts/button/register_button.dart';
@@ -51,18 +52,18 @@ class _LoginForm extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          _FormTopic(),
-          SizedBox(height: 45),
-          TransparentTextFieldWidget(hint: 'Username'),
-          SizedBox(height: 25),
-          TransparentTextFieldWidget(hint: 'Password'),
-          SizedBox(height: 50),
-          _LoginButton(),
-          SizedBox(height: 25),
-          OrDivider(),
-          SizedBox(height: 25),
-          _RegisterButton(),
+        children: [
+          const _FormTopic(),
+          const SizedBox(height: 45),
+          TransparentTextFieldWidget(hint: context.translation.username),
+          const SizedBox(height: 25),
+          TransparentTextFieldWidget(hint: context.translation.password),
+          const SizedBox(height: 50),
+          const _LoginButton(),
+          const SizedBox(height: 25),
+          const OrDivider(),
+          const SizedBox(height: 25),
+          const _RegisterButton(),
         ],
       ),
     );

@@ -1,4 +1,25 @@
 {
-    "title": "The Last of the Mohicans",
-    "welcome_msg":"Welcome to the Mohicans!"
+  "watch_trailer": "Watch Trailer",
+  "story_line": "Story Line",
+  "star_cast": "Star Cast",
+  "recomended": "Recomended",
+  "all": "All",
+  "web_show": "Web Show",
+  "bollywood": "Bollywood",
+  "hollywood": "Hollywood",
+  "buzz_videos": "Buzz Videos",
+  "search_for_movie_series_dots": "Search for movie, series...",
+  "popular": "Popular",
+  "you_may_like": "You May Like",
+  "username": "Username",
+  "password": "Password",
+  "movie_app": "Movie App",
+  "best_shows_for_you": "Best Shows For You",
+  "or": "OR",
+  "home": "Home",
+  "live_tv": "Live Tv",
+  "games": "Games",
+  "settings": "Settings",
+  "login": "Login",
+  "register": "Register"
 }

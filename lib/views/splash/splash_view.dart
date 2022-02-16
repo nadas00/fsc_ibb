@@ -3,6 +3,7 @@ import 'package:fsc_ibb/core/locator.dart';
 import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 import 'package:stacked/stacked.dart';
 import 'splash_view_model.dart';
+import 'package:fsc_ibb/core/utils/extension/context/translation_context_extension.dart';
 
 part 'widget/parts/splash_subtitle.dart';
 part 'widget/parts/splash_topic.dart';
@@ -28,12 +29,12 @@ class _SplashViewState extends State<SplashView> {
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                _SplashTopic(text: 'Movie App'),
-                SizedBox(height: 25),
-                _SplashSubTitle(text: 'Best Shows For You'),
-                SizedBox(height: 25),
-                CircularProgressIndicator.adaptive(),
+              children: [
+                _SplashTopic(text: context.translation.movie_app),
+                const SizedBox(height: 25),
+                _SplashSubTitle(text: context.translation.best_shows_for_you),
+                const SizedBox(height: 25),
+                const CircularProgressIndicator.adaptive(),
               ],
             ),
           ),

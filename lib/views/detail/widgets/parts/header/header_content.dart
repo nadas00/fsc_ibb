@@ -59,7 +59,7 @@ class _WatchTrailerButton extends StatelessWidget {
                       GradientMasker(
                         active: true,
                         child: Text(
-                          "Watch Trailer",
+                          context.translation.watch_trailer,
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),

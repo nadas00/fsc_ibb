@@ -12,7 +12,7 @@ class _SearchField extends StatelessWidget {
         Flexible(
           child: TextField(
             decoration: InputDecoration(
-              hintText: 'Search movie, series...',
+              hintText: context.translation.search_for_movie_series_dots,
               fillColor: Colors.white12,
               filled: true,
               border: OutlineInputBorder(

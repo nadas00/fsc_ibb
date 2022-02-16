@@ -13,12 +13,9 @@ class _RegisterButton extends StatelessWidget {
         alignment: Alignment.center,
         height: 50,
         width: MediaQuery.of(context).size.width * .8,
-        child: GradientMasker(
-          active: false,
-          child: Text(
-            "Register",
-            style: Theme.of(context).textTheme.headline6,
-          ),
+        child: Text(
+          context.translation.register,
+          style: Theme.of(context).textTheme.headline6,
         ),
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20), gradient: commonGradient),
       ),

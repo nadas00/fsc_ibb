@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/core/utils/extension/context/translation_context_extension.dart';
 
 class OrDivider extends StatelessWidget {
   const OrDivider({
@@ -13,7 +14,7 @@ class OrDivider extends StatelessWidget {
         const SizedBox(width: 25),
         const Flexible(child: Divider(thickness: 2, color: Colors.white)),
         const SizedBox(width: 25),
-        Text("OR", style: Theme.of(context).textTheme.headline6),
+        Text(context.translation.or, style: Theme.of(context).textTheme.headline6),
         const SizedBox(width: 25),
         const Flexible(child: Divider(thickness: 2, color: Colors.white)),
         const SizedBox(width: 25),

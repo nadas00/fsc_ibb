@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:fsc_ibb/widgets/common/bottom_navigation_bar/menu_item.dart';
+import 'package:fsc_ibb/core/utils/extension/context/translation_context_extension.dart';
 
 class BlurredBottomNavigationBar extends StatelessWidget {
   const BlurredBottomNavigationBar({
@@ -32,15 +33,11 @@ class BlurredBottomNavigationBar extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
-                        MenuItem(
-                          icon: Icons.home,
-                          title: "Home",
-                          isSelected: true,
-                        ),
-                        MenuItem(icon: Icons.play_arrow, title: "Live TV"),
-                        MenuItem(icon: Icons.gamepad, title: "Games"),
-                        MenuItem(icon: Icons.settings, title: "Settings"),
+                      children: [
+                        MenuItem(icon: Icons.home, title: context.translation.home, isSelected: true),
+                        MenuItem(icon: Icons.play_arrow, title: context.translation.live_tv),
+                        MenuItem(icon: Icons.gamepad, title: context.translation.games),
+                        MenuItem(icon: Icons.settings, title: context.translation.settings),
                       ],
                     ),
                   ),
