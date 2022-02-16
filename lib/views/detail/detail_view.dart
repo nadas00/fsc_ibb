@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fsc_ibb/model/show/cast_model.dart';
 import 'package:fsc_ibb/model/show/show_model.dart';
 import 'package:fsc_ibb/widgets/common/play_button_widget/play_button_widget.dart';
+import 'package:fsc_ibb/widgets/common/text/topic_text.dart';
 import 'package:fsc_ibb/widgets/show_cards/show_card_widget.dart';
 import 'package:fsc_ibb/widgets/star_cast/star_cast_widget.dart';
 import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
@@ -18,8 +19,6 @@ part 'widgets/parts/header/header_content.dart';
 part 'widgets/parts/recomended_list.dart';
 // Casts List
 part 'widgets/parts/casts_list.dart';
-// Detail Topic
-part 'widgets/parts/detail_topic.dart';
 
 class DetailView extends StatelessWidget {
   const DetailView({Key key}) : super(key: key);
@@ -64,15 +63,15 @@ class DetailView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 25),
-                      const _DetailTopic("Sotry Line"),
+                      const TopicText("Sotry Line"),
                       const SizedBox(height: 25),
                       viewModel.busy(viewModel.storyLine) ? const CircularProgressIndicator.adaptive() : Text(viewModel.storyLine),
                       const SizedBox(height: 25),
-                      const _DetailTopic("Star Cast"),
+                      const TopicText("Star Cast"),
                       const SizedBox(height: 25),
                       viewModel.busy(viewModel.castModels) ? const CircularProgressIndicator.adaptive() : _CastList(castModelList: viewModel.castModels),
                       const SizedBox(height: 25),
-                      const _DetailTopic("Recomended"),
+                      const TopicText("Recomended"),
                       const SizedBox(height: 25),
                       _RecomendedList(currentShowModel: currentShowModel),
                       const SizedBox(height: 50),

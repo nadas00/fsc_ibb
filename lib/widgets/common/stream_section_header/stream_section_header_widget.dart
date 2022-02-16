@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fsc_ibb/widgets/common/text/topic_text.dart';
 import 'package:fsc_ibb/widgets/utils/gradient_masker.dart';
 
 class StreamSectionHeader extends StatelessWidget {
@@ -13,10 +14,7 @@ class StreamSectionHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.headline5,
-        ),
+        TopicText(title),
         const GradientMasker(
           active: true,
           child: Icon(Icons.more_horiz, size: 35),

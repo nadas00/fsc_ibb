@@ -1,8 +1,8 @@
-part of '../../detail_view.dart';
+import 'package:flutter/material.dart';
 
-class _DetailTopic extends StatelessWidget {
+class TopicText extends StatelessWidget {
   final String text;
-  const _DetailTopic(
+  const TopicText(
     this.text, {
     Key key,
   }) : super(key: key);
