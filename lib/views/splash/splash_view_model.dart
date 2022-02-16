@@ -7,8 +7,6 @@ import 'package:stacked/stacked.dart';
 import 'package:fsc_ibb/core/logger.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../main.dart';
-
 class SplashViewModel extends BaseViewModel {
   BuildContext _context;
   setContext(BuildContext context) {
