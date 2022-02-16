@@ -8,6 +8,9 @@ import 'package:fsc_ibb/widgets/common/play_button_widget/play_button_widget.dar
 import 'package:fsc_ibb/widgets/common/score_widget/score_widget.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+part 'parts/score_and_view.dart';
+part 'parts/title_and_language.dart';
+
 class ShowCard extends StatelessWidget {
   final ShowModel showModel;
 
@@ -20,15 +23,10 @@ class ShowCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(showModel.title);
         locator<NavigationService>().clearTillFirstAndShow(detailViewRoute, arguments: showModel);
       },
       child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(image: NetworkImage(showModel.coverUrl), fit: BoxFit.cover),
-          color: Colors.white.withOpacity(.1),
-          borderRadius: BorderRadius.circular(45),
-        ),
+        decoration: networkImageDecoration,
         height: 200,
         width: 200,
         child: Stack(
@@ -53,73 +51,26 @@ class ShowCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Row(
-                          children: [
-                            const SizedBox(width: 5),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      showModel.title,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: Theme.of(context).textTheme.subtitle1,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Flexible(
-                                    child: Text(
-                                      " (${showModel.language})",
-                                      style: Theme.of(context).textTheme.subtitle1,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Flexible(
-                          child: Row(
-                            children: [
-                              Flexible(
-                                child: ScoreWidget(score: showModel.score),
-                              ),
-                              const SizedBox(width: 5),
-                              Flexible(
-                                child: RichText(
-                                    maxLines: 1,
-                                    softWrap: false,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: showModel.view,
-                                          style: Theme.of(context).textTheme.subtitle1,
-                                        ),
-                                        TextSpan(
-                                          text: " Views",
-                                          style: Theme.of(context).textTheme.caption,
-                                        )
-                                      ],
-                                    )),
-                              )
-                            ],
-                          ),
-                        ),
+                        _TitleAndLanguage(showModel: showModel),
+                        _ScoreAndViews(showModel: showModel),
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            const Positioned(
-              bottom: 60,
-              right: 25,
-              child: PlayButtonWidget.square(),
-            )
+            const Positioned(bottom: 60, right: 25, child: PlayButtonWidget.square())
           ],
         ),
       ),
+    );
+  }
+
+  BoxDecoration get networkImageDecoration {
+    return BoxDecoration(
+      image: DecorationImage(image: NetworkImage(showModel.coverUrl), fit: BoxFit.cover),
+      color: Colors.white.withOpacity(.1),
+      borderRadius: BorderRadius.circular(45),
     );
   }
 }
